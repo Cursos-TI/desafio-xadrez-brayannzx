@@ -29,10 +29,9 @@ int main() {
         printf("Esquerda\n");
     }
 
-    return 0;
-}
+    printf("--------------------------\n");
 
-int main() {
+    // Simulação do movimento do Cavalo para baixo e esquerda
     int x = 4, y = 4; // posição inicial do cavalo
     int novoX, novoY;
 
