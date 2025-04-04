@@ -31,3 +31,24 @@ int main() {
 
     return 0;
 }
+
+ // Simulação dos movimentos do Cavalo
+    printf("Movimentos possíveis do Cavalo a partir da posição (4, 4):\n");
+    int x = 4;
+    int y = 4;
+
+    for (int dx = -2; dx <= 2; dx++) {
+        for (int dy = -2; dy <= 2; dy++) {
+            if ((dx * dx + dy * dy == 5)) {
+                int novoX = x + dx;
+                int novoY = y + dy;
+
+                // Verifica se está dentro dos limites de um tabuleiro 8x8
+                if (novoX >= 0 && novoX < 8 && novoY >= 0 && novoY < 8) {
+                    printf("(%d, %d)\n", novoX, novoY);
+                }
+            }
+        }
+    }
+
+    return 0;
