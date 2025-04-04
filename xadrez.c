@@ -32,23 +32,31 @@ int main() {
     return 0;
 }
 
- // Simulação dos movimentos do Cavalo
-    printf("Movimentos possíveis do Cavalo a partir da posição (4, 4):\n");
-    int x = 4;
-    int y = 4;
+int main() {
+    int x = 4, y = 4; // posição inicial do cavalo
+    int novoX, novoY;
 
-    for (int dx = -2; dx <= 2; dx++) {
-        for (int dy = -2; dy <= 2; dy++) {
-            if ((dx * dx + dy * dy == 5)) {
-                int novoX = x + dx;
-                int novoY = y + dy;
+    printf("Movimentos em L do Cavalo para BAIXO e ESQUERDA a partir de (%d, %d):\n", x, y);
 
-                // Verifica se está dentro dos limites de um tabuleiro 8x8
+    // Loop externo com FOR para movimentos na vertical (baixo)
+    for (int dx = 1; dx <= 2; dx++) {
+        int dy = 1; // inicializa o contador para o loop interno
+
+        // Loop interno com WHILE para movimentos na horizontal (esquerda)
+        while (dy <= 2) {
+            // A soma dos quadrados deve ser 5 para ser um movimento em L
+            if (dx * dx + dy * dy == 5) {
+                novoX = x + dx;   // movendo para baixo
+                novoY = y - dy;   // movendo para a esquerda
+
+                // Verifica se a nova posição está dentro do tabuleiro 8x8
                 if (novoX >= 0 && novoX < 8 && novoY >= 0 && novoY < 8) {
-                    printf("(%d, %d)\n", novoX, novoY);
+                    printf("-> (%d, %d)\n", novoX, novoY);
                 }
             }
+            dy++;
         }
     }
 
     return 0;
+}
