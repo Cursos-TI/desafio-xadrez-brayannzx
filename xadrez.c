@@ -1,60 +1,119 @@
 #include <stdio.h>
 
-// Definição de constantes para os movimentos
-#define MOVIMENTO_BISPO 5
-#define MOVIMENTO_TORRE 5
-#define MOVIMENTO_RAINHA 8
+// Constantes para o número de movimentos de cada peça
+#define BISPO_MOV 5
+#define TORRE_MOV 5
+#define RAINHA_MOV 8
 
+// -----------------------------
+// Funções recursivas (Nível Mestre)
+// -----------------------------
+
+// Movimentação recursiva do Bispo: Diagonal (Cima + Direita)
+void moverBispo(int passos) {
+    if (passos == 0) return;
+    printf("Cima\n");
+    printf("Direita\n");
+    moverBispo(passos - 1);
+}
+
+// Movimentação recursiva da Torre: Direita
+void moverTorre(int passos) {
+    if (passos == 0) return;
+    printf("Direita\n");
+    moverTorre(passos - 1);
+}
+
+// Movimentação recursiva da Rainha: Esquerda
+void moverRainha(int passos) {
+    if (passos == 0) return;
+    printf("Esquerda\n");
+    moverRainha(passos - 1);
+}
+
+// -----------------------------
+// Função principal
+// -----------------------------
 int main() {
-    // Simulação do movimento do Bispo (5 casas na diagonal superior direita)
-    printf("Movimento do Bispo:\n");
-    for (int i = 0; i < MOVIMENTO_BISPO; i++) {
-        printf("Direita\n");
+    int i, j;
+
+    // -----------------------------
+    // Nível Novato - Estruturas de repetição básicas
+    // -----------------------------
+    printf("=== NÍVEL NOVATO ===\n");
+
+    // Bispo - Usando for (Cima + Direita)
+    printf("\nMovimentação do Bispo (for loop):\n");
+    for (i = 0; i < BISPO_MOV; i++) {
         printf("Cima\n");
-    }
-
-    printf("--------------------------\n");
-
-    // Simulação do movimento da Torre (5 casas para a direita)
-    printf("Movimento da Torre:\n");
-    for (int i = 0; i < MOVIMENTO_TORRE; i++) {
         printf("Direita\n");
     }
 
-    printf("--------------------------\n");
-
-    // Simulação do movimento da Rainha (8 casas para a esquerda)
-    printf("Movimento da Rainha:\n");
-    for (int i = 0; i < MOVIMENTO_RAINHA; i++) {
-        printf("Esquerda\n");
+    // Torre - Usando while
+    printf("\nMovimentação da Torre (while loop):\n");
+    i = 0;
+    while (i < TORRE_MOV) {
+        printf("Direita\n");
+        i++;
     }
 
-    printf("--------------------------\n");
+    // Rainha - Usando do-while
+    printf("\nMovimentação da Rainha (do-while loop):\n");
+    i = 0;
+    do {
+        printf("Esquerda\n");
+        i++;
+    } while (i < RAINHA_MOV);
 
-    // Simulação do movimento do Cavalo para baixo e esquerda
-    int x = 4, y = 4; // posição inicial do cavalo
-    int novoX, novoY;
+    // -----------------------------
+    // Nível Aventureiro - Loops aninhados
+    // -----------------------------
+    printf("\n=== NÍVEL AVENTUREIRO ===\n");
 
-    printf("Movimentos em L do Cavalo para BAIXO e ESQUERDA a partir de (%d, %d):\n", x, y);
+    // Cavalo em L: 2 movimentos para Baixo + 1 movimento para Esquerda
+    printf("\nMovimentação do Cavalo (aninhado - Baixo e Esquerda):\n");
+    for (i = 0; i < 2; i++) {
+        printf("Baixo\n");
 
-    // Loop externo com FOR para movimentos na vertical (baixo)
-    for (int dx = 1; dx <= 2; dx++) {
-        int dy = 1; // inicializa o contador para o loop interno
-
-        // Loop interno com WHILE para movimentos na horizontal (esquerda)
-        while (dy <= 2) {
-            // A soma dos quadrados deve ser 5 para ser um movimento em L
-            if (dx * dx + dy * dy == 5) {
-                novoX = x + dx;   // movendo para baixo
-                novoY = y - dy;   // movendo para a esquerda
-
-                // Verifica se a nova posição está dentro do tabuleiro 8x8
-                if (novoX >= 0 && novoX < 8 && novoY >= 0 && novoY < 8) {
-                    printf("-> (%d, %d)\n", novoX, novoY);
-                }
-            }
-            dy++;
+        j = 0;
+        while (j < 1) {
+            printf("Esquerda\n");
+            j++;
         }
+    }
+
+    // -----------------------------
+    // Nível Mestre - Recursão + loops com múltiplas variáveis e break/continue
+    // -----------------------------
+    printf("\n=== NÍVEL MESTRE ===\n");
+
+    // Bispo com função recursiva
+    printf("\nMovimentação do Bispo (recursivo):\n");
+    moverBispo(BISPO_MOV);
+
+    // Torre com função recursiva
+    printf("\nMovimentação da Torre (recursivo):\n");
+    moverTorre(TORRE_MOV);
+
+    // Rainha com função recursiva
+    printf("\nMovimentação da Rainha (recursivo):\n");
+    moverRainha(RAINHA_MOV);
+
+    // Cavalo em L: 2 para Cima + 1 para Direita com controle complexo
+    printf("\nMovimentação do Cavalo (complexo - Cima e Direita):\n");
+    for (int i = 0, cima = 0, direita = 0; i < 3; i++) {
+        if (cima < 2) {
+            printf("Cima\n");
+            cima++;
+            continue;
+        }
+
+        if (direita < 1) {
+            printf("Direita\n");
+            direita++;
+        }
+
+        if (cima == 2 && direita == 1) break;
     }
 
     return 0;
